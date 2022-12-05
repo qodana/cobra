@@ -3,9 +3,6 @@ on:
   workflow_dispatch:
   pull_request:
   push:
-    branches:
-      - main
-      - 'releases/*'
 
 jobs:
   qodana:
@@ -17,6 +14,6 @@ jobs:
       - name: 'Qodana Scan'
         uses: JetBrains/qodana-action@v2022.2.4
         with:
-          args: --baseline,qodana.sarif.json
+          args: --baseline,qodana.sarif.json,--fail-threshold,0
         env:
           QODANA_TOKEN: ${{ secrets.QODANA_TOKEN }}
